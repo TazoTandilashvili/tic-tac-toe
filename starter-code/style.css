@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Outfit:wght@100..900&display=swap');
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+}
+
+:root {
+  --home-pg-bg: #1a2a33;
+  --homepage-light-tx: #a8bfc9;
+  --container-color: #1f3641;
+  --button-collor: #1a2a33;
+}
+/*                        SHORTCUT         */
+/*display flex column center  */
+.display-flex-column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* displayflex row center */
+.display-flex-row{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+/*        !HOME PAGE SECTION     */
+.home-page{
+  background-color: var(--home-pg-bg);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* homepage text style */
+  color: var(--homepage-light-tx);
+  text-transform: uppercase;
+}
+.x-icon{
+  width: 33px;
+  height: 32.5px;
+  
+}
+.o-icon {
+  width: 31.7px;
+  height: 31.7px;
+}
+#idk fill{
+  fill: red;
+}
+/* choose mark section */
+.choose-mark-section{
+  background-color: var(--container-color);
+  margin-top: 31.5px ;
+  padding: 24px 24px 30px;
+  border-radius: 15px;
+  box-shadow: inset 0 -8px 0 0 #10212a;
+}
+
+.choose-mark-title{
+  font-size:16px ;
+  font-weight: bold;
+}
+.choose-mark{
+  margin-top: 24px;
+  /* padding: 11px 50.2px 11.3px 50px; */
+  border-radius: 10px;
+  background-color: var(--button-collor);
+  justify-content: space-between;
+}
+/* choosedsideactive */
+.choose-side-active{
+  background-color: var(--homepage-light-tx);
+  border-radius:10px;
+  padding: 11px 50px ;
+}
+.home-description{
+  margin-top:17px ;
+  font-size: 14px;
+  letter-spacing: 0.88px;
+  font-weight: 500;
+}
