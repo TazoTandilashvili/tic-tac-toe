@@ -1,5 +1,7 @@
 'use strict'
 const choiceButtons = document.querySelectorAll('.btn-box');
+const home = document.getElementById('home');
+const board = document.getElementById('board');
 
 let player1 = 'x';
 
@@ -13,4 +15,9 @@ const activateChoice = (icon) => {
     choiceButtons[1].classList.add('active');
     player1 = 'o';
   }
+}
+
+const startGame = (mode) => {
+  home.style.display = "none";
+  board.style.display = "flex";
 }
