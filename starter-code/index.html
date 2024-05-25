@@ -33,8 +33,59 @@
   </button>
 </section>
 <section id="board">
-
+  <div class="board-header">
+    <div class="home-header" onclick="roundEndFnc('quit')">
+      <img src="./assets/icon-x.svg" alt="x-icon">
+      <img src="./assets/icon-o.svg" alt="o-icon">
+    </div>
+    <div class="turn-box">
+      <img src="./assets/icon-x-gray.svg" alt="" class="turn-icon">
+      <h3>turn</h3>
+    </div>
+    <button class="restart">
+      <img src="./assets/icon-restart.svg" alt="restart-icon">
+    </button>
+  </div>
+  <div class="play-area">
+    <div class="play-btn"></div>
+    <div class="play-btn"></div>
+    <div class="play-btn"></div> 
+    <div class="play-btn"></div>
+    <div class="play-btn"></div>
+    <div class="play-btn"></div>
+    <div class="play-btn"></div>
+    <div class="play-btn"></div>
+    <div class="play-btn"></div>
+  </div>
+  <div class="statistics">
+    <div class="statistic-box">
+      <h3 id="x-score-text">x(you)</h3>
+      <span id="x-score">0</span>
+    </div>
+    <div class="statistic-box">
+      <h3>tie</h3>
+      <span id="tie-score">0</span>
+    </div>
+    <div class="statistic-box">
+      <h3 id="o-score-text">o (cpu)</h3>
+      <span id="o-score">0</span>
+    </div>
+  </div>
 </section>
+
+<!-- winner popup -->
+<section id="round-stat">
+<h1 class="title-winner"></h1>
+<div class="mark-winner">
+  <img src="" alt="" class="winner-icon">
+  <h2 class="winner-color" id="tie">takes the round</h2>
+</div>
+<div class="round-stat-buttons">
+  <button class="quit-button" onclick="roundEndFnc('quit')"><h3>quit</h3></button>
+  <button class="next-round-button" onclick="roundEndFnc('nextRound')"><h3>next round</h3></button>
+</div>
+</section>
+
 <script src="./script.js"></script>
 </body>
 </html>
