@@ -68,6 +68,22 @@ const activateChoice = (icon) => {
     player1 = 'o';
   }
 }
+
+function cpuMove() {
+  // Check if there are any free buttons left
+  if (freeButtons.length === 0) {
+    return; // No free buttons left
+  }
+  // Choose a random index from the freeButtons array
+  const randomIndex = Math.floor(Math.random() * freeButtons.length);
+  // Get the selected button index from freeButtons array
+  const selectedButtonIndex = freeButtons[randomIndex];
+  // Remove the selected button index from freeButtons array
+  freeButtons.splice(randomIndex, 1);
+  console.log('egia bidzi cxovrebai')
+  // Return the selected button index
+  return selectedButtonIndex;
+}
 const createClickedFunction = () => {
   for (let index = 0; index < playButtons.length; index++) {
     playButtons[index].onclick = (event) => {
@@ -76,19 +92,35 @@ const createClickedFunction = () => {
       freeButtons.splice(spliceIndex, 1);
       const icon = document.createElement('img');
       icon.classList.add('play-icon');
-
       if (turn === 'x') {
-        icon.src = "./assets/icon-x.svg";
-        event.target.append(icon);
-        turnIndicator.src = "./assets/icon-o-gray.svg";
-        turn = 'o';
-        xArray.push(index);
+        if (mode === 'player') {
+          icon.src = "./assets/icon-x.svg";
+          event.target.append(icon);
+          turnIndicator.src = "./assets/icon-o-gray.svg";
+          turn = 'o';
+          xArray.push(index);
+        } else if (mode === 'cpu' && player1 === 'x') {
+          turn = 'o';
+          turnIndicator.src = "./assets/icon-o-gray.svg";
+        } else if (mode === 'cpu' && player1 !== 'x') {
+          cpuMove();
+          console.log('asdas');
+          turn = 'o';
+          turnIndicator.src = "./assets/icon-o-gray.svg";
+          icon.src = "./assets/icon-x.svg";
+          event.target.append(icon);
+        }
       } else {
-        icon.src = "./assets/icon-o.svg";
-        event.target.append(icon);
-        turnIndicator.src = "./assets/icon-x-gray.svg";
-        turn = 'x';
-        oArray.push(index);
+        if (mode == 'player') {
+          icon.src = "./assets/icon-o.svg";
+          event.target.append(icon);
+          turnIndicator.src = "./assets/icon-x-gray.svg";
+          turn = 'x';
+          oArray.push(index);
+        } else if (mode === 'cpu') {
+
+        }
+
       };
       event.target.onclick = null;
       roundStatFunction();

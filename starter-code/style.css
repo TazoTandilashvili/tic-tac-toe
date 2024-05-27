@@ -67,7 +67,7 @@ body{
 }
 .buttons{
   width: 100%;
-  padding: 10px;
+  padding: 9px;
   display: flex;
   border-radius: 10px;
   margin-top: 24px;
@@ -135,7 +135,7 @@ body{
   align-items: center;
   gap: 9px;
 }
-.turn-box img{
+.turn-icon{
   width: 16px;
 }
 .turn-box h3{
@@ -227,12 +227,21 @@ body{
 /* win pop up  */
 
 #round-stat{
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.521);
+  position: absolute;
+  display: none;
+}
+.round-stat-backgroung{
   width: 375px;
   height: 228px;
   background-color: var(--dg);
   text-align: center;
   position: absolute;
-  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .title-winner{
   margin-top: 40px;
@@ -267,7 +276,7 @@ body{
 .round-stat-buttons button{
   border: none;
   border-radius: 10px;
-  padding: 16px;
+  padding: 16.5px;
 }
 .round-stat-buttons h3{
   font-size: 16px;
@@ -282,4 +291,80 @@ body{
 .next-round-button{
   background-color: var(--orange);
   box-shadow: inset 0 -4px 0 0 #cc8b13;
+}
+/* tablet mode */
+
+@media screen and (min-width: 768px){
+  .pannel{
+    width: 460px;
+    padding: 24px 24px 30px 24px ;
+    margin: 40px 0px ;
+  }
+  .new-game-btn{
+    width: 460px;
+    padding: 17px 0px 25px 0px;
+  }
+  .new-game-btn h2 {
+    font-size: 20px;
+  }
+  .player-btn{
+    margin-top: 20px;
+  }
+
+  /* board */
+  .board-header,
+  .play-area,
+  .statistics{
+    width: 460px;
+  }
+  .play-area{
+    margin-top: 20px;
+  }
+  .turn-box{
+    gap: 13px;
+    width: 140px;
+    height:52px ;
+  }
+  .turn-box h3, .title-winner{
+    font-size: 16px;
+  }
+
+  .restart{
+    padding: 14.5px 16px;
+  }
+  .restart img,
+  .turn-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .play-btn{
+    width: 140px;
+    height: 140px;
+  }
+  .play-icon,
+  .winner-icon{
+    width: 64px;
+    height: 64px;
+  }
+  .statistic-box{
+    width: 140px;
+    height: 72px;
+  }
+  #x-score,
+  #tie-score,
+  #o-score{
+    font-size: 24px;
+  }
+  .round-stat-backgroung{
+    width: 768px;
+    height: 266px;
+  }
+  .mark-winner{
+    gap: 24px;
+  }
+  .mark-winner h2 {
+    font-size: 40px;
+  }
+
 }
