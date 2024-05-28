@@ -19,6 +19,7 @@ const winnerSide = document.querySelector('.title-winner');
 const winnerIcon = document.querySelector('.winner-icon');
 const winnerColor = document.querySelector('.winner-color');
 
+let newGameCheck = true;
 let player1 = 'x';
 let mode = 'cpu';
 let turn = 'x';
@@ -68,65 +69,99 @@ const activateChoice = (icon) => {
     player1 = 'o';
   }
 }
-
 function cpuMove() {
-  // Check if there are any free buttons left
   if (freeButtons.length === 0) {
     return; // No free buttons left
   }
   // Choose a random index from the freeButtons array
   const randomIndex = Math.floor(Math.random() * freeButtons.length);
-  // Get the selected button index from freeButtons array
   const selectedButtonIndex = freeButtons[randomIndex];
-  // Remove the selected button index from freeButtons array
   freeButtons.splice(randomIndex, 1);
-  console.log('egia bidzi cxovrebai')
-  // Return the selected button index
-  return selectedButtonIndex;
+
+  const icon = document.createElement('img');
+
+  if (mode === 'cpu' && player1 !== 'x') {
+    icon.src = "./assets/icon-x.svg";
+    playButtons[selectedButtonIndex].appendChild(icon);
+    turn = 'o';
+    turnIndicator.src = './assets/icon-o-gray.svg';
+    playButtons[selectedButtonIndex].onclick = 'null';
+    xArray.push(selectedButtonIndex);
+    console.log('arvici dzmoa')
+
+  } else if (mode === 'cpu' && player1 === 'x') {
+    icon.src = "./assets/icon-o.svg";
+    playButtons[selectedButtonIndex].appendChild(icon);
+    turn = 'x';
+    turnIndicator.src = './assets/icon-x-gray.svg';
+    playButtons[selectedButtonIndex].onclick = 'null';
+    oArray.push(selectedButtonIndex);
+
+
+  }
+
+  if (checkWinner(player1 === 'x' ? oArray : xArray)) {
+    roundStatFunction(); // Update round status after CPU's move
+  }
+
 }
+
+
 const createClickedFunction = () => {
   for (let index = 0; index < playButtons.length; index++) {
     playButtons[index].onclick = (event) => {
-
       const spliceIndex = freeButtons.indexOf(index);
       freeButtons.splice(spliceIndex, 1);
       const icon = document.createElement('img');
-      icon.classList.add('play-icon');
       if (turn === 'x') {
-        if (mode === 'player') {
+        if (mode === 'cpu' && turn === 'x') {
           icon.src = "./assets/icon-x.svg";
-          event.target.append(icon);
-          turnIndicator.src = "./assets/icon-o-gray.svg";
-          turn = 'o';
+          event.target.append(icon)
           xArray.push(index);
-        } else if (mode === 'cpu' && player1 === 'x') {
           turn = 'o';
-          turnIndicator.src = "./assets/icon-o-gray.svg";
-        } else if (mode === 'cpu' && player1 !== 'x') {
-          cpuMove();
-          console.log('asdas');
-          turn = 'o';
-          turnIndicator.src = "./assets/icon-o-gray.svg";
+          turnIndicator.src = './assets/icon-o-gray.svg';
+          event.target.onclick = null; // Disable click after player's move
+          if (freeButtons.length > 0) {
+            setTimeout(() => { // Delay CPU move for better UX
+              cpuMove();
+            }, 500);
+          }
+
+        } else if (mode === 'player' && turn === 'x') {
           icon.src = "./assets/icon-x.svg";
-          event.target.append(icon);
+          event.target.append(icon)
+          xArray.push(index);
+          turn = 'o';
+          event.target.onclick = null;
         }
       } else {
-        if (mode == 'player') {
+        if (mode === 'cpu' && turn === 'o') {
           icon.src = "./assets/icon-o.svg";
-          event.target.append(icon);
-          turnIndicator.src = "./assets/icon-x-gray.svg";
-          turn = 'x';
+          event.target.append(icon)
           oArray.push(index);
-        } else if (mode === 'cpu') {
-
+          turn = 'o';
+          turnIndicator.src = './assets/icon-o-gray.svg';
+          event.target.onclick = null; // Disable click after player's move
+          setTimeout(() => { // Delay CPU move for better UX
+            cpuMove();
+          }, 500);
+        } else if (mode === 'player' && turn === 'o') {
+          icon.src = "./assets/icon-o.svg";
+          event.target.append(icon)
+          oArray.push(index);
+          turn = 'x';
+          event.target.onclick = null;
         }
-
-      };
-      event.target.onclick = null;
+      }
+      event.target.onclick = null; // Disable click after player's move
       roundStatFunction();
     }
   }
 }
+
+
+
+
 const roundStatFunction = () => {
   if (checkWinner(xArray)) {
     xScore++;
@@ -155,6 +190,7 @@ const roundStatFunction = () => {
     winnerColor.style.color = "#f2b137"
     winnerColor.textContent = 'TAKES THE ROUND';
     if (mode === 'cpu' && player1 === 'x') {
+
       winnerSide.textContent = 'OH NO, YOU LOST…'
     } else if (mode === 'cpu' && player1 !== 'x') {
       winnerSide.textContent = 'you won';
@@ -196,14 +232,18 @@ const roundEndFnc = (endParam) => {
     });
     createClickedFunction();
   }
+  if (player1 !== 'x') {
+    cpuMove();
+  }
 }
 const startGame = (modeParam) => {
   home.style.display = "none";
   board.style.display = "flex";
-
+  restartGame();
   createClickedFunction();
   if (modeParam === "cpu") {
     mode = 'cpu';
+    // newGameCheck = false;
     if (player1 === 'x') {
       xScoreText.textContent = "X (you)";
       oScoreText.textContent = "o (cpu)";
@@ -243,6 +283,9 @@ const restartGame = () => {
   xScoreElement.textContent = '0';
   tieScoreElement.textContent = '0';
   createClickedFunction();
+  if (player1 !== 'x') {
+    cpuMove();
+  }
 }
 
 
