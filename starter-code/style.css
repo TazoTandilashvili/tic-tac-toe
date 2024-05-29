@@ -367,4 +367,81 @@ body{
     font-size: 40px;
   }
 
+
+  @media screen and (min-width: 1440px){
+    .pannel{
+      width: 460px;
+      padding: 24px 24px 30px 24px ;
+      margin: 40px 0px ;
+    }
+    .new-game-btn{
+      width: 460px;
+      padding: 17px 0px 25px 0px;
+    }
+    .new-game-btn h2 {
+      font-size: 20px;
+    }
+
+    }
+    .player-btn{
+      margin-top: 20px;
+    }
+  
+    /* board */
+    .board-header,
+    .play-area,
+    .statistics{
+      width: 460px;
+    }
+    .play-area{
+      margin-top: 20px;
+    }
+    .turn-box{
+      gap: 13px;
+      width: 140px;
+      height:52px ;
+    }
+    .turn-box h3, .title-winner{
+      font-size: 16px;
+    }
+  
+    .restart{
+      padding: 14.5px 16px;
+    }
+    .restart img,
+    .turn-icon {
+      width: 20px;
+      height: 20px;
+    }
+  
+    .play-btn{
+      width: 140px;
+      height: 140px;
+    }
+    .play-icon,
+    .winner-icon{
+      width: 64px;
+      height: 64px;
+    }
+    .statistic-box{
+      width: 140px;
+      height: 72px;
+    }
+    #x-score,
+    #tie-score,
+    #o-score{
+      font-size: 24px;
+    }
+    .round-stat-backgroung{
+      width: 100%;
+      height: 266px;
+    }
+    .mark-winner{
+      gap: 24px;
+    }
+    .mark-winner h2 {
+      font-size: 40px;
+    }
+  
+
 }
